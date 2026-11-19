@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WakeLab</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body class=" bg-[#F7F7FC]">
+    <!-- SIDEBAR -->
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 z-[5] flex w-[245px] -translate-x-full flex-col bg-gradient-to-b from-[#352b7d] to-[#211b5b] px-5 py-[30px] text-white transition-transform duration-300 md:translate-x-0">
+
+        <a href="#" class="flex items-center gap-3 px-2 pb-12 text-white no-underline">
+            <span class="grid h-[42px] w-[42px] place-items-center rounded-[14px] bg-[#7466ee] text-[27px]">✦</span>
+            <span>
+                <b class="block text-[21px] tracking-[-0.7px]">WakeLab</b>
+                <small class="mt-[5px] block text-[11px] text-[#c8c4f3]">Réveils pédagogiques</small>
+            </span>
+        </a>
+
+        <nav class="grid gap-[10px]">
+            <a href="#home"
+                class="flex items-center gap-[13px] rounded-xl bg-[#6354ce] px-[15px] py-[14px] text-[13px] font-semibold text-white no-underline">
+                <span class="text-xl">⌂</span>
+                <span>Accueil</span>
+            </a>
+
+            <button id="ajouterActiviter"
+                class="flex cursor-pointer items-center gap-[13px] rounded-xl border-0 bg-transparent px-[15px] py-[14px] text-left text-[13px] font-semibold text-[#d9d6ff] hover:bg-[#6354ce] hover:text-white">
+                <span class="text-xl">＋</span>
+                <span>Ajouter une activité</span>
+            </button>
+
+            <button id="monProfile"
+                class="flex cursor-pointer items-center gap-[13px] rounded-xl border-0 bg-transparent px-[15px] py-[14px] text-left text-[13px] font-semibold text-[#d9d6ff] hover:bg-[#6354ce] hover:text-white">
+                <span class="text-xl">♙</span>
+                <span>Mon profil</span>
+            </button>
+        </nav>
+
+        <!-- <div class="mt-auto grid gap-2 rounded-[17px] border border-[#746bd0] bg-[#5145a9] p-[18px]">
+            <span class="text-[27px]">✧</span>
+            <b class="text-[13px]">Apprendre autrement !</b>
+            <small class="text-[11px] leading-relaxed text-[#d2cff5]">Des idées courtes pour réveiller les
+                esprits.</small>
+        </div> -->
+
+        <!-- <div class="mt-[22px] mx-[5px] text-[10px] text-[#aaa5e0]">
+            WakeLab <span class="px-[5px]">•</span> 2026
+        </div> -->
+    </aside>
+
+    <main class="ml-[245px]">
+        <!-- TOPBAR -->
+        <header class=" grid grid-cols-[1fr_auto_1fr]  gap-3 mt-5 mb-5">
+
+
+            <div class="ml-5 border border-gray-200 rounded-lg px-2 py-1">
+                <span class="text-xl">⌕</span>
+                <input id="searchInput" type="search" placeholder="Rechercher une activité...">
+            </div>
+
+
+            <select id="themeFilter" aria-label="Filtrer par thème" class="border border-gray-200 rounded-lg">
+                <option value="all">Tous les thèmes</option>
+                <option value="Jeu">Jeu</option>
+                <option value="Apprentissage">Apprentissage</option>
+                <option value="Exercice">Exercice</option>
+                <option value="Autre">Autre</option>
+            </select>
+
+
+            
+
+        </header>
+        <hr class="border border-gray-100 mb-5">
+
+        <!--BANNER-->
+        <!-- <div class="bg-gradient-to-r from-[#5142c5] to-[#776adb] mx-9 rounded-xl px-5 py-7 grid grid-cols-2 ">
+            <div class="text-white flex flex-col items-start">
+                <small class=" text-[#d9d4ff] mb-3">BIENVENUE SUR WAKELAB</small>
+                <h1 class="text-3xl font-bold mb-3">Réveillez les idées. <br><span>Dynamisez vos sessions.</span></h1>
+                <p class="text-[#e5e2ff] text-sm mb-3">Découvrez et partagez des activités pédagogiques courtes,
+                    créatives et <br><span> efficaces.</span></p>
+                <button class="bg-white rounded-lg px-2 py-1 font-bold text-[#4d3fbd] "> + Proposer une
+                    activité</button>
+            </div>
+            <div>
+               
+
+            </div>
+
+        </div> -->
+        <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--STATS-->
+        <!-- <section class="grid grid-cols-1 md:grid-cols-3 h-auto gap-4 mx-9 mt-5 mb-5"> -->
+
+            <!-- Card 1 -->
+            <!-- <article
+                class="grid grid-cols-[70px_1fr] items-center gap-3 rounded-xl border border-gray-200 bg-white px-5 py-5">
+
+                <div class="w-[50px] h-[50px] rounded-full bg-[#EEEAFF] flex items-center justify-center text-3xl">
+                    ▦
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <strong class="text-2xl">03</strong>
+                    <span class="text-lg text-gray-600">Activités proposées</span>
+                </div>
+
+            </article> -->
+
+            <!-- Card 2 -->
+            <!-- <article
+                class="grid grid-cols-[70px_1fr] items-center gap-3 rounded-xl border border-gray-200 bg-white px-5 py-5">
+
+                <div class="w-[50px] h-[50px] rounded-full bg-[#E9F1FF] flex items-center justify-center text-3xl">
+                    ♧
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <strong class="text-2xl">10–20</strong>
+                    <span class="text-lg text-gray-600">Minutes par activité</span>
+                </div>
+
+            </article> -->
+
+            <!-- Card 3 -->
+            <!-- <article
+                class="grid grid-cols-[70px_1fr] items-center gap-3 rounded-xl border border-gray-200 bg-white px-5 py-5">
+
+                <div class="w-[50px] h-[50px] rounded-full bg-[#FFF2DF] flex items-center justify-center text-3xl">
+                    ✦
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <strong class="text-2xl">4</strong>
+                    <span class="text-lg text-gray-600">Thèmes disponibles</span>
+                </div>
+
+            </article> -->
+
+        <!-- </section> -->
+        <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!-- SECTION HEADING -->
+        <section class="flex items-start justify-between mx-9">
+
+            <!-- <div>
+                <span class=" text-[12px] font-bold tracking-[1.7px] text-[#8a7ce7]">LA COMMUNAUTÉ</span>
+
+                <h2 class=" text-xl font-bold tracking-tight md:text-[21px]">
+                    Activités récentes <span class="text-[#7766e8]">✦</span>
+                </h2>
+
+                <p class="text-[12px] text-gray-600 ">
+                    Des idées pour commencer l’après-midi avec énergie.
+                </p>
+            </div>
+
+            <button id="clearSearch"
+                class="bg-transparent px-0 py-[7px] text-[12px] font-bold text-purple md:text-[11px]">
+                Réinitialiser les filtres ↗
+            </button> -->
+
+
+
+        </section>
+       
+        
+        <!--CARDS-->
+        <section id="cardsContainer" class="grid grid-cols-3">
+           
+        </section>
+
+<!--MODAL AJOUTER UN ACTIVITE-->
+
+
+<div id="modalActivite" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center">
+
+    <form id="formActivite" class="bg-white p-5 rounded-lg w-80">
+
+        <h2 class="font-bold text-lg mb-3">Ajouter une activité</h2>
+
+        <input type="text" id="titre" placeholder="Titre"
+            class="border p-2 rounded w-full mb-3">
+
+        <select id="theme" class="border p-2 rounded w-full mb-3">
+            <option value="">Choisir un thème</option>
+            <option value="Jeu">Jeu</option>
+            <option value="Apprentissage">Apprentissage</option>
+            <option value="Exercice">Exercice</option>
+            <option value="Autre">Autre</option>
+        </select>
+
+        <textarea id="objectifs" placeholder="Objectifs pédagogiques (facultatif)"
+            class="border p-2 rounded w-full mb-3"></textarea>
+
+        <label class="text-sm">Durée (10 à 20 minutes)</label>
+        <input type="number" id="duree" min="10" max="20" placeholder="Durée"
+            class="border p-2 rounded w-full mb-3">
+
+        <textarea id="description" placeholder="Description de l'activité"
+            class="border p-2 rounded w-full mb-3"></textarea>
+
+        <button id="ajouterActiviterBouton" type="submit" class="bg-blue-600 text-white p-2 rounded w-full">
+            Ajouter
+        </button>
+
+    </form>
+</div>
+
+
+<!--/////////////////////////////////////////////////-->
+<!--MODAL MODIFIER ACTIVITE-->
+<div class=" hidden flex items-center justify-center bg-[#29245e]/60 p-4">
+
+  <!-- Background blur -->
+  <div class="fixed inset-0 bg-gradient-to-br from-[#38318b] to-[#211d50] -z-10"></div>
+
+  <!-- Modal -->
+  <div class="w-full max-w-[540px] bg-white rounded-[20px] shadow-2xl px-[30px] py-[32px] relative">
+
+    <!-- Close button -->
+    <button
+      type="button"
+      class="absolute top-4 right-5 w-[30px] h-[30px] rounded-lg bg-[#f1efff] text-[#6856e8] text-xl font-bold flex items-center justify-center hover:bg-[#e5e1ff] transition"
+    >
+      ×
+    </button>
+
+    <!-- Header -->
+    <div class="mb-5">
+      <p class="text-[10px] tracking-[2px] font-bold text-[#8b7cff] uppercase mb-2">
+        Partage ton idée
+      </p>
+
+      <h1 class="text-[23px] font-bold text-[#242344]">
+        Modifier l'activité
+      </h1>
+    </div>
+
+    <!-- Form -->
+    <form class="space-y-6">
+
+      <!-- Titre -->
+      <div>
+        <label class="block text-[12px] font-semibold text-[#555477] mb-1.5">
+          Titre de l'activité
+        </label>
+
+        <input
+          type="text"
+          value="Quiz des développeurs"
+          class="w-full h-[42px] px-3 rounded-xl border border-[#e9e7f5] text-[13px] text-[#343354] outline-none focus:border-[#6856e8] transition"
+        >
+      </div>
+
+      <!-- Thème et durée -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+        <div>
+          <label class="block text-[12px] font-semibold text-[#555477] mb-1.5">
+            Thème
+          </label>
+
+          <select
+            class="w-full h-[44px] px-3 rounded-xl border border-[#e9e7f5] bg-white text-[13px] text-[#343354] outline-none focus:border-[#6856e8]"
+          >
+            <option>Jeu</option>
+            <option>Programmation</option>
+            <option>Design</option>
+            <option>Quiz</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[12px] font-semibold text-[#555477] mb-1.5">
+            Durée (minutes)
+          </label>
+
+          <input
+            type="number"
+            value="15"
+            class="w-full h-[44px] px-3 rounded-xl border border-[#e9e7f5] text-[13px] text-[#343354] outline-none focus:border-[#6856e8]"
+          >
+        </div>
+
+      </div>
+
+      <!-- Objectifs pédagogiques -->
+      <div>
+        <label class="block text-[12px] font-semibold text-[#555477] mb-1">
+          Objectifs pédagogiques
+        </label>
+
+        <p class="text-[11px] text-gray-400 mb-1.5">
+          (facultatif)
+        </p>
+
+        <input
+          type="text"
+          value="Réviser les notions du développement web"
+          class="w-full h-[41px] px-3 rounded-xl border border-[#e9e7f5] text-[13px] text-[#343354] outline-none focus:border-[#6856e8]"
+        >
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-[12px] font-semibold text-[#555477] mb-1.5">
+          Description
+        </label>
+
+        <textarea
+          rows="3"
+          class="w-full min-h-[86px] px-3 py-3 rounded-xl border border-[#e9e7f5] text-[13px] text-[#343354] outline-none resize-y focus:border-[#6856e8]"
+        >Répondez en équipe à une série de questions rapides autour du HTML, CSS et JavaScript.</textarea>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-end gap-2.5 pt-1">
+
+        <button
+          type="button"
+          class="h-[40px] px-4 rounded-xl border border-[#e9e7f5] text-[#8583a0] text-[12px] font-bold hover:bg-gray-50 transition"
+        >
+          Annuler
+        </button>
+
+        <button
+          type="submit"
+          class="h-[40px] px-4 rounded-xl bg-[#6552df] text-white text-[12px] font-bold shadow-lg shadow-[#6552df]/20 hover:bg-[#5542cf] transition"
+        >
+          Enregistrer l'activité
+        </button>
+
+      </div>
+
+    </form>
+  </div>
+
+</div>
+<!--//////////////////////////////////////////////////////-->
+MODAL PROFILE
+ <div class="min-h-screen hidden flex items-center justify-center bg-gradient-to-br from-[#42348f] to-[#51449c] p-4">
+
+  <!-- Background blur -->
+  <div class="fixed inset-0 bg-black/20 backdrop-blur-[3px]"></div>
+
+  <!-- Modal -->
+  <div class="relative w-full max-w-[430px] rounded-[20px] bg-white px-[30px] py-[30px] shadow-2xl">
+
+    <!-- Close button -->
+    <button
+      class="absolute right-5 top-[17px] flex h-[30px] w-[30px] items-center justify-center rounded-[10px] bg-[#f2efff] text-xl font-semibold text-[#6855e7] hover:bg-[#e8e3ff] transition">
+      &times;
+    </button>
+
+    <!-- Header -->
+    <div class="mb-6">
+      <p class="mb-2 text-[9px] font-bold uppercase tracking-[2px] text-[#8b7cf6]">
+        Ton profil
+      </p>
+
+      <h2 class="text-[23px] font-bold tracking-tight text-[#292747]">
+        Comment tu t'appelles ?
+      </h2>
+    </div>
+
+    <!-- Description -->
+    <p class="mb-[14px] text-[13px] leading-[21px] text-[#9291aa]">
+      Ton nom sera automatiquement associé à tes prochaines propositions.
+    </p>
+
+    <!-- Form -->
+    <form>
+      <label for="name" class="mb-[6px] block text-[11px] font-bold text-[#55516f]">
+        Nom complet
+      </label>
+
+      <input
+        id="name"
+        type="text"
+        value="oussama faik"
+        placeholder="Votre nom complet"
+        class="h-[41px] w-full rounded-[11px] border border-[#e8e6f3] bg-[#fdfdff] px-3 text-[12px] text-[#33304f] outline-none transition focus:border-[#6855e7] focus:ring-2 focus:ring-[#6855e7]/10"
+      />
+
+      <!-- Actions -->
+      <div class="mt-[48px] flex justify-end gap-[10px]">
+
+        <button
+          type="button"
+          class="h-[40px] rounded-[11px] border border-[#ece9fb] px-[17px] text-[11px] font-semibold text-[#8885a1] transition hover:bg-gray-50">
+          Annuler
+        </button>
+
+        <button
+          type="submit"
+          class="h-[40px] rounded-[11px] bg-[#6552e5] px-[18px] text-[12px] font-bold text-white shadow-lg shadow-[#6552e5]/20 transition hover:bg-[#5542d5] active:scale-95">
+          Enregistrer
+        </button>
+
+      </div>
+    </form>
+  </div>
+
+</div>
+<div id="nameForm" class=" flex justify-center items-center hidden">
+<form id="monForm" class="bg-white p-4 rounded-lg shadow w-72 ">
+    <label class="text-blue-950">Entrer le nom</label>
+
+    <input
+        type="text"
+        id="nom"
+        placeholder="Entrer le nom"
+        class="border p-2 rounded w-full my-2"
+    >
+
+    <button id="submitNom" class="bg-blue-600 text-white p-2 rounded w-full">
+        Submit
+    </button>
+</form>
+</div>    
+
+    </main>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
