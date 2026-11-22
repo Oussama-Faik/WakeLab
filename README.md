@@ -1,11 +1,11 @@
-#🚀 WakeLab – Application de gestion des activités pédagogiques
-##📌 Contexte du projet
+🚀 WakeLab – Application de gestion des activités pédagogiques
+📌 Contexte du projet
 
 Chaque après-midi, la reprise de la formation commence par un réveil pédagogique de 10 à 20 minutes. Cette activité permet de dynamiser le groupe, de mobiliser ses connaissances ou de découvrir une nouvelle notion de manière ludique.
 
 Pour faciliter la préparation de ces moments, WakeLab est une application permettant de centraliser, consulter et gérer les propositions d'activités pédagogiques.
 
-##🎯 Objectif du projet
+🎯 Objectif du projet
 
 Développer une application web permettant aux utilisateurs de proposer, consulter, rechercher, modifier et supprimer des activités pédagogiques.
 
@@ -21,7 +21,7 @@ Auteur : Nom complet de la personne ayant créé l'activité.
 
 L'application repose sur une seule entité principale : Activité.
 
-##✨ Fonctionnalités principales
+✨ Fonctionnalités principales
 👤 Gestion du nom utilisateur
 Enregistrement du nom complet lors de la première utilisation.
 Validation du nom avant son enregistrement.
